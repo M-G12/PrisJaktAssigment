@@ -1,0 +1,27 @@
+package com.app.prisjakt.base.ui.product
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
+import com.app.prisjakt.domain.model.ProductInfo
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class ProductFragment : Fragment() {
+    private lateinit var productInfo: ProductInfo
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+
+    ): View {
+        productInfo = arguments?.get("product") as ProductInfo
+        return ComposeView(requireContext()).apply {
+            setContent {
+                ProductView(productInfo = productInfo)
+            }
+        }
+    }
+}
